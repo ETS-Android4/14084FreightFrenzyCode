@@ -13,7 +13,7 @@ public class HardwareMap {
     public DcMotor backLeftMotor   = null;
 
     //Create Servo
-    public Servo servo1            = null;
+    //public Servo servo1            = null;
 
     //Additional Variables
     com.qualcomm.robotcore.hardware.HardwareMap hardwareMap = null;
@@ -27,13 +27,13 @@ public class HardwareMap {
         hardwareMap     = hwMap;
 
         //Init Motor Info
-        frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
-        frontLeftMotor  = hardwareMap.get(DcMotor.class, "frontLeftMotor");
-        backRightMotor  = hardwareMap.get(DcMotor.class, "backRightMotor");
-        backLeftMotor   = hardwareMap.get(DcMotor.class, "backLeftMotor");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
+        frontLeftMotor  = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
+        backRightMotor  = hardwareMap.get(DcMotor.class, "BackRightMotor");
+        backLeftMotor   = hardwareMap.get(DcMotor.class, "BackLeftMotor");
 
         //Init Servo Info
-        servo1          = hardwareMap.get(Servo.class  , "servo1");
+        //servo1          = hardwareMap.get(Servo.class  , "servo1");
 
         //Set Motor Direction
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
