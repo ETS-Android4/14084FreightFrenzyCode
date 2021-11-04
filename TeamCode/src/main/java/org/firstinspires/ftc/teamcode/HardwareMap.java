@@ -23,7 +23,7 @@ public class HardwareMap {
         initialize(hwMap);
     }
 
-    private void initialize(com.qualcomm.robotcore.hardware.HardwareMap hwMap) {
+    public void initialize(com.qualcomm.robotcore.hardware.HardwareMap hwMap) {
         hardwareMap     = hwMap;
 
         //Init Motor Info
