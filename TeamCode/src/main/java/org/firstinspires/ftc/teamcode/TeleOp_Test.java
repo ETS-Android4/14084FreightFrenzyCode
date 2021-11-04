@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.Hardware;
 @Disabled
 
 public class TeleOp_Test extends OpMode {
-    HardwareMap robot = new HardwareMap(com.qualcomm.robotcore.hardware.HardwareMap);
+    HardwareMap robot = new HardwareMap();
 
     @Override
     public void init() {

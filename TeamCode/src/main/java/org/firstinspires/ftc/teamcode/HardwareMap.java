@@ -19,8 +19,8 @@ public class HardwareMap {
     com.qualcomm.robotcore.hardware.HardwareMap hardwareMap = null;
     public ElapsedTime runtime     = new ElapsedTime();
 
-    public HardwareMap(com.qualcomm.robotcore.hardware.HardwareMap hwMap) {
-        initialize(hwMap);
+    public HardwareMap() {
+
     }
 
     public void initialize(com.qualcomm.robotcore.hardware.HardwareMap hwMap) {
