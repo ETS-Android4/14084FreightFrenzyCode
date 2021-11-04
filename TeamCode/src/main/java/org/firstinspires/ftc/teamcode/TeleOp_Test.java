@@ -57,6 +57,9 @@ public class TeleOp_Test extends OpMode {
 
         if(gamepad2.a) {
             telemetry.addData("Lemon", "true");
+            if(gamepad2.b) {
+                telemetry.addData("Extra Lemon", "");
+            }
         } else {
             telemetry.addData("Lemon", "false");
         }
