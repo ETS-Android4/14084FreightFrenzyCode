@@ -27,10 +27,10 @@ public class HardwareMap {
         hardwareMap     = hwMap;
 
         //Init Motor Info
-        frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightMotor");
-        frontLeftMotor  = hardwareMap.get(DcMotor.class, "FrontLeftMotor");
-        backRightMotor  = hardwareMap.get(DcMotor.class, "BackRightMotor");
-        backLeftMotor   = hardwareMap.get(DcMotor.class, "BackLeftMotor");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightDrive");
+        frontLeftMotor  = hardwareMap.get(DcMotor.class, "FrontLeftDrive");
+        backRightMotor  = hardwareMap.get(DcMotor.class, "BackRightDrive");
+        backLeftMotor   = hardwareMap.get(DcMotor.class, "BackLeftDrive");
 
         //Init Servo Info
         //servo1          = hardwareMap.get(Servo.class  , "servo1");
