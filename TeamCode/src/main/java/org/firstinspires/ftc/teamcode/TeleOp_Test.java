@@ -55,7 +55,11 @@ public class TeleOp_Test extends OpMode {
             telemetry.addData("Mode", "Bean Drive");
         }
 
-
+        if(gamepad2.a) {
+            telemetry.addData("Lemon", "true");
+        } else {
+            telemetry.addData("Lemon", "false");
+        }
 
         robot.frontLeftMotor.setPower(frontLeftPower);
         robot.frontRightMotor.setPower(frontRightPower);
