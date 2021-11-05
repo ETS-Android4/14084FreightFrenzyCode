@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Hardware;
 
-@TeleOp(name="TeleOpTest", group="robot")
+@TeleOp(name="TeleOp Test", group="robot")
 
 public class TeleOp_Test extends OpMode {
     HardwareMap robot = new HardwareMap();
