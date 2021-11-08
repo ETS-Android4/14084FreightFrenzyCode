@@ -39,17 +39,32 @@ public class TeleOp_Test extends OpMode {
         double backRightPower;
 
         double clawPower;
-        clawPower = -gamepad2.left_stick_y;
+        clawPower = gamepad2.left_stick_y * 0.1;
 
 
-        if(gamepad1.right_bumper) {
-            frontLeftPower = -gamepad1.left_stick_y;
-            frontRightPower = -gamepad1.right_stick_y;
-            backLeftPower = -gamepad1.left_stick_y;
-            backRightPower = -gamepad1.right_stick_y;
+        if(gamepad1.left_bumper) {
+            if(gamepad1.right_bumper) {
+                frontLeftPower = -gamepad1.left_stick_y * .5;
+                frontRightPower = -gamepad1.right_stick_y * .5;
+                backLeftPower = -gamepad1.left_stick_y * .5;
+                backRightPower = -gamepad1.right_stick_y * .5;
 
-            telemetry.addData("Mode", "Tank Drive");
+                telemetry.addData("Mode", "Slow Tank");
+            } else {
+                frontLeftPower = -gamepad1.left_stick_y;
+                frontRightPower = -gamepad1.right_stick_y;
+                backLeftPower = -gamepad1.left_stick_y;
+                backRightPower = -gamepad1.right_stick_y;
 
+                telemetry.addData("Mode", "Tank Drive");
+            }
+        } else if(gamepad1.right_bumper) {
+            frontLeftPower = -gamepad1.left_stick_y * 0.5;
+            frontRightPower = -gamepad1.right_stick_y * 0.5;
+            backLeftPower = -gamepad1.right_stick_y * 0.5;
+            backRightPower = -gamepad1.left_stick_y * 0.5;
+
+            telemetry.addData("Mode", "Sloth Drive");
         } else {
             frontLeftPower = -gamepad1.left_stick_y;
             frontRightPower = -gamepad1.right_stick_y;
