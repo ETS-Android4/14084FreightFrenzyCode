@@ -12,6 +12,7 @@ public class HardwareMap {
     public DcMotor backRightMotor  = null;
     public DcMotor backLeftMotor   = null;
     public DcMotor clawArm         = null;
+    public DcMotor spin            = null;
 
     //Create Servo
     //public Servo servo1            = null;
@@ -35,6 +36,7 @@ public class HardwareMap {
 
         clawArm         = hardwareMap.get(DcMotor.class, "ClawArm");
 
+        spin            = hardwareMap.get(DcMotor.class, "Spin");
 
         //Init Servo Info
         //servo1          = hardwareMap.get(Servo.class  , "servo1");
@@ -47,6 +49,9 @@ public class HardwareMap {
 
         clawArm.setDirection(DcMotor.Direction.FORWARD);
 
+        spin.setDirection(DcMotor.Direction.FORWARD);
+
+
         //Set Motor Mode
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -54,6 +59,8 @@ public class HardwareMap {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         clawArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        spin.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //Set Zero Power Behavior
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -63,6 +70,8 @@ public class HardwareMap {
 
         clawArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        spin.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
         //Set Motor Power to Zero
         frontRightMotor.setPower(0);
         frontLeftMotor.setPower(0);
@@ -70,6 +79,8 @@ public class HardwareMap {
         backLeftMotor.setPower(0);
 
         clawArm.setPower(0);
+
+        spin.setPower(0);
 
 
     }

@@ -24,6 +24,8 @@ public class Autonomous_Test extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private ElapsedTime timer   = new ElapsedTime();
 
+    private boolean continueLoop = true;
+
     BNO055IMU imu;
 
     Orientation angles;
@@ -69,13 +71,41 @@ public class Autonomous_Test extends LinearOpMode {
 
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
-        while (opModeIsActive()) {
+        while (opModeIsActive() && (continueLoop == true)) {
+            if (angles.firstAngle > 95) {
+                telemetry.addData("Angle", "Too Big");
+            } else if (angles.firstAngle < 85) {
+                telemetry.addData("Angle", "Too Small");
+            } else {
+                continueLoop = false;
+            }
+
+
+
+
             telemetry.update();
         }
 
+        continueLoop = true;
+
+        timer.reset();
+
+        while (opModeIsActive() && (timer.milliseconds() < 3000)) {
+            telemetry.addData("Angle", "Correct");
+            telemetry.update();
+        }
+
+
     }
 
+
+
+
+
+    //----------------------
     //IMU Telemetry Updates
+    //----------------------
+
 
     void composeTelemetry() {
 

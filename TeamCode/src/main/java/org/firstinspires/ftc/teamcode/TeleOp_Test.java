@@ -39,7 +39,10 @@ public class TeleOp_Test extends OpMode {
         double backRightPower;
 
         double clawPower;
-        clawPower = gamepad2.left_stick_y * 0.1;
+        clawPower = gamepad2.left_stick_y * 0.4;
+
+        double spinPower;
+        spinPower = gamepad2.right_stick_y;
 
 
         if(gamepad1.left_bumper) {
@@ -89,6 +92,8 @@ public class TeleOp_Test extends OpMode {
         robot.backRightMotor.setPower(backRightPower);
 
         robot.clawArm.setPower(clawPower);
+
+        robot.spin.setPower(spinPower);
 
         telemetry.addData("Status", "Driver Controlled");
         telemetry.addData("Info", "Hit Stop to Stop");
