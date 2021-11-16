@@ -15,7 +15,7 @@ public class HardwareMap {
     public DcMotor spin            = null;
 
     //Create Servo
-    //public Servo servo1            = null;
+    public Servo clawServo         = null;
 
     //Additional Variables
     com.qualcomm.robotcore.hardware.HardwareMap hardwareMap = null;
@@ -39,7 +39,7 @@ public class HardwareMap {
         spin            = hardwareMap.get(DcMotor.class, "Spin");
 
         //Init Servo Info
-        //servo1          = hardwareMap.get(Servo.class  , "servo1");
+        clawServo       = hardwareMap.get(Servo.class  , "Claw");
 
         //Set Motor Direction
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
