@@ -42,7 +42,10 @@ public class TeleOp_Test extends OpMode {
         clawPower = gamepad2.left_stick_y * 0.4;
 
         double spinPower;
-        spinPower = gamepad2.right_stick_y;
+        spinPower = gamepad2.right_trigger;
+
+        double liftPower;
+        liftPower = gamepad2.right_stick_y * 0.4;
 
 
         if(gamepad1.left_bumper) {
@@ -93,6 +96,7 @@ public class TeleOp_Test extends OpMode {
         robot.backRightMotor.setPower(backRightPower);
 
         robot.clawArm.setPower(clawPower);
+        robot.slidePull.setPower(liftPower);
 
         robot.spin.setPower(spinPower);
 
