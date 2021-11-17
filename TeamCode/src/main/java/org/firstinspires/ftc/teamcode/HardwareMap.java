@@ -7,16 +7,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class HardwareMap {
     //--Create Motors--//
-    public DcMotor frontRightMotor = null;      //Control Hub Port #
-    public DcMotor frontLeftMotor  = null;      //Control Hub Port #
-    public DcMotor backRightMotor  = null;      //Control Hub Port #
-    public DcMotor backLeftMotor   = null;      //Control Hub Port #
-    public DcMotor clawArm         = null; //Expansion Hub #3 Port #
-    public DcMotor spin            = null; //Expansion Hub #3 Port #
-    //public DcMotor slidePull     = null; //Expansion Hub #3 Port #
+    public DcMotor frontRightMotor = null;      //Control Hub Motor Port #0
+    public DcMotor frontLeftMotor  = null;      //Control Hub Motor Port #1
+    public DcMotor backRightMotor  = null;      //Control Hub Motor Port #2
+    public DcMotor backLeftMotor   = null;      //Control Hub Motor Port #3
+
+    public DcMotor clawArm         = null; //Expansion Hub #3 Motor Port #0
+    public DcMotor spin            = null; //Expansion Hub #3 Motor Port #1
+    //public DcMotor slidePull     = null; //Expansion Hub #3 Motor Port #2
 
     //--Create Servo--//
-    public Servo clawServo         = null; // Expansion/Control Hub Port #
+    public Servo clawServo         = null;      //Control Hub Servo Port #0
 
     //--Additional Variables--//
     com.qualcomm.robotcore.hardware.HardwareMap hardwareMap = null;
