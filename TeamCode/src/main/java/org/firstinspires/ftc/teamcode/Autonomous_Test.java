@@ -72,7 +72,7 @@ public class Autonomous_Test extends LinearOpMode {
 
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
-        while (opModeIsActive() && (continueLoop == true)) {
+        while (opModeIsActive() && (continueLoop)) {
             if (angles.firstAngle > 95) {
                 telemetry.addData("Angle", "Too Big");
             } else if (angles.firstAngle < 85) {
