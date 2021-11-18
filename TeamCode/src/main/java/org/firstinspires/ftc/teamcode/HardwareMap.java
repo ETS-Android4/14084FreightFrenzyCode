@@ -76,7 +76,7 @@ public class HardwareMap {
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         clawArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        slidePull.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        slidePull.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         spin.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
