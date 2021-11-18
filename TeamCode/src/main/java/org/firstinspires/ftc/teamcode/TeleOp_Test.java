@@ -42,7 +42,7 @@ public class TeleOp_Test extends OpMode {
         clawPower = gamepad2.left_stick_y * 0.4;
 
         double spinPower;
-        spinPower = gamepad2.right_trigger;
+        spinPower = gamepad2.right_trigger * 0.4;
 
         double liftPower;
         liftPower = gamepad2.right_stick_y * 0.4;
