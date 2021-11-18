@@ -62,8 +62,8 @@ public class HardwareMap {
         backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        clawArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);         //No Encoder Use
-        //clawArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);         //Use With Encoder
+        //clawArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);       //No Encoder Use
+        clawArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);           //Use With Encoder
         //slidePull.setMode(DcMotor.RunMode.RUN_USING_ENCODER);       //Remove comments or comment out code depending on needs
         slidePull.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);       //Depends if encoder is used later or even hooked up
 
