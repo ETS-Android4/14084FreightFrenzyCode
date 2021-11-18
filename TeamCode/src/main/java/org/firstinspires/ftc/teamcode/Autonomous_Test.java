@@ -19,6 +19,8 @@ import java.util.Locale;
 
 @Autonomous(name = "Autonomous Test" , group = "robot")
 
+// TODO Fix Warnings in Autonomous Test
+
 public class Autonomous_Test extends LinearOpMode {
     HardwareMap robot           = new HardwareMap();
     private ElapsedTime runtime = new ElapsedTime();
