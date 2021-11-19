@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.Func;
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
@@ -19,25 +18,18 @@ import java.util.Locale;
 
 @Autonomous(name = "Autonomous Test" , group = "robot")
 
-// TODO Fix Warnings in Autonomous Test
-
 public class Autonomous_Test extends LinearOpMode {
-    HardwareMap robot           = new HardwareMap();
-    private ElapsedTime runtime = new ElapsedTime();
-    private ElapsedTime timer   = new ElapsedTime();
+    HardwareMap robot   = new HardwareMap();
+    ElapsedTime runtime = new ElapsedTime();
+    ElapsedTime timer   = new ElapsedTime();
 
-    private boolean continueLoop = true;
+    boolean continueLoop = true;
 
 
     BNO055IMU imu;
 
     Orientation angles;
     Acceleration gravity;
-
-
-    static final double driveSpeed = 0.6;
-    static final double turnSpeed  = 0.5;
-
 
     @Override
     public void runOpMode() {
@@ -46,7 +38,7 @@ public class Autonomous_Test extends LinearOpMode {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample OPMode
         parameters.loggingEnabled      = true;
         parameters.loggingTag          = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
@@ -114,59 +106,29 @@ public class Autonomous_Test extends LinearOpMode {
 
         // At the beginning of each telemetry update, grab a bunch of data
         // from the IMU that we will then display in separate lines.
-        telemetry.addAction(new Runnable() { @Override public void run()
-        {
+        telemetry.addAction(() -> {
             // Acquiring the angles is relatively expensive; we don't want
             // to do that in each of the three items that need that info, as that's
             // three times the necessary expense.
             angles   = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
             gravity  = imu.getGravity();
-        }
         });
 
         telemetry.addLine()
-                .addData("status", new Func<String>() {
-                    @Override public String value() {
-                        return imu.getSystemStatus().toShortString();
-                    }
-                })
-                .addData("calib", new Func<String>() {
-                    @Override public String value() {
-                        return imu.getCalibrationStatus().toString();
-                    }
-                });
+                .addData("status", () -> imu.getSystemStatus().toShortString())
+                .addData("calibrated", () -> imu.getCalibrationStatus().toString());
 
         telemetry.addLine()
-                .addData("heading", new Func<String>() {
-                    @Override public String value() {
-                        return formatAngle(angles.angleUnit, angles.firstAngle);
-                    }
-                })
-                .addData("roll", new Func<String>() {
-                    @Override public String value() {
-                        return formatAngle(angles.angleUnit, angles.secondAngle);
-                    }
-                })
-                .addData("pitch", new Func<String>() {
-                    @Override public String value() {
-                        return formatAngle(angles.angleUnit, angles.thirdAngle);
-                    }
-                });
+                .addData("heading", () -> formatAngle(angles.angleUnit, angles.firstAngle))
+                .addData("roll", () -> formatAngle(angles.angleUnit, angles.secondAngle))
+                .addData("pitch", () -> formatAngle(angles.angleUnit, angles.thirdAngle));
 
         telemetry.addLine()
-                .addData("grvty", new Func<String>() {
-                    @Override public String value() {
-                        return gravity.toString();
-                    }
-                })
-                .addData("mag", new Func<String>() {
-                    @Override public String value() {
-                        return String.format(Locale.getDefault(), "%.3f",
-                                Math.sqrt(gravity.xAccel*gravity.xAccel
-                                        + gravity.yAccel*gravity.yAccel
-                                        + gravity.zAccel*gravity.zAccel));
-                    }
-                });
+                .addData("gravity", () -> gravity.toString())
+                .addData("mag", () -> String.format(Locale.getDefault(), "%.3f",
+                        Math.sqrt(gravity.xAccel*gravity.xAccel
+                                + gravity.yAccel*gravity.yAccel
+                                + gravity.zAccel*gravity.zAccel)));
     }
 
     String formatAngle(AngleUnit angleUnit, double angle) {
