@@ -2,11 +2,23 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.PIDCoefficients;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="TeleOp Test", group="robot")
 
 public class TeleOp_Test extends OpMode {
     HardwareMap robot = new HardwareMap();
+
+//TODO TUNE PID Coefficients
+
+
+    public static PIDCoefficients pidCoeffs = new PIDCoefficients(0,0,0);
+    public PIDCoefficients pidGains = new PIDCoefficients(0,0,0);
+
+    ElapsedTime PIDTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+
 
     @Override
     public void init() {
@@ -36,9 +48,17 @@ public class TeleOp_Test extends OpMode {
         double backLeftPower;
         double backRightPower;
 
-        double clawPower;
-        clawPower = gamepad2.left_stick_y * 0.4;
+        //double clawPower;
+        //clawPower = gamepad2.left_stick_y * 0.4;
+//
+//      TODO TEST THIS CODE
+//
+        double speed = gamepad2.left_stick_y * 0.4;
 
+        PID(speed);
+//
+//
+//
         double spinPower;
         spinPower = gamepad2.right_trigger * 0.4;
 
@@ -97,7 +117,7 @@ public class TeleOp_Test extends OpMode {
         robot.backLeftMotor.setPower(backLeftPower);
         robot.backRightMotor.setPower(backRightPower);
 
-        robot.clawArm.setPower(clawPower);
+        //robot.clawArm.setPower(clawPower);
         robot.slidePull.setPower(liftPower);
 
         robot.spin.setPower(spinPower);
@@ -110,6 +130,33 @@ public class TeleOp_Test extends OpMode {
     }
 
     //TODO add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
+
+    //PID TUNING CODE
+    //Coefficients need tuned
+
+    double integral = 0;
+    double lastError = 0;
+
+    public void PID(double targetVelocity) {
+
+        PIDTimer.reset();
+
+        double currentVelocity = robot.clawArm.getVelocity();
+
+        double error = targetVelocity - currentVelocity;
+
+        integral += error + PIDTimer.time();
+
+        double deltaError = error - lastError;
+        double derivative = deltaError / PIDTimer.time();
+
+        pidGains.p = pidCoeffs.p * error;
+        pidGains.i = pidCoeffs.i * integral;
+        pidGains.d = pidCoeffs.d * derivative;
+        robot.clawArm.setVelocity(pidGains.p + pidGains.i + pidGains.d + targetVelocity);
+
+
+    }
 
 
     @Override

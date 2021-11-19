@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -12,7 +13,7 @@ public class HardwareMap {
     public DcMotor backRightMotor  = null;      //Control Hub Motor Port #2
     public DcMotor backLeftMotor   = null;      //Control Hub Motor Port #3
 
-    public DcMotor clawArm         = null; //Expansion Hub #3 Motor Port #0
+    public DcMotorEx clawArm       = null; //Expansion Hub #3 Motor Port #0
     public DcMotor spin            = null; //Expansion Hub #3 Motor Port #1
     public DcMotor slidePull       = null; //Expansion Hub #3 Motor Port #2
 
@@ -36,7 +37,7 @@ public class HardwareMap {
         backRightMotor  = hardwareMap.get(DcMotor.class, "BackRightDrive");
         backLeftMotor   = hardwareMap.get(DcMotor.class, "BackLeftDrive");
 
-        clawArm         = hardwareMap.get(DcMotor.class, "ClawArm");
+        clawArm         = hardwareMap.get(DcMotorEx.class, "ClawArm");
         slidePull       = hardwareMap.get(DcMotor.class, "SlidePull");
 
         spin            = hardwareMap.get(DcMotor.class, "Spin");
