@@ -12,7 +12,7 @@ public class HardwareMap {
     public DcMotor frontLeftMotor  = null;      //Control Hub Motor Port #1
     public DcMotor backRightMotor  = null;      //Control Hub Motor Port #2
     public DcMotor backLeftMotor   = null;      //Control Hub Motor Port #3
-
+    //TODO May need to revert DcMotorEx to DcMotor in lines 16 and 40
     public DcMotorEx clawArm       = null; //Expansion Hub #3 Motor Port #0
     public DcMotor spin            = null; //Expansion Hub #3 Motor Port #1
     public DcMotor slidePull       = null; //Expansion Hub #3 Motor Port #2
