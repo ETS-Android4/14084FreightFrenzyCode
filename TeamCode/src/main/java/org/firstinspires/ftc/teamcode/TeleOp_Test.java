@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class TeleOp_Test extends OpMode {
     HardwareMap robot = new HardwareMap();
 
-//TODO TUNE PID Coefficients
+//TODO Tune PID Coefficients
 
 
     public static PIDCoefficients pidCoeffs = new PIDCoefficients(0,0,0);
@@ -51,7 +51,7 @@ public class TeleOp_Test extends OpMode {
         //double clawPower;
         //clawPower = gamepad2.left_stick_y * 0.4;
 //
-//      TODO TEST THIS CODE
+//TODO Test PID Code
 //
         double speed = gamepad2.left_stick_y * 0.4;
 
@@ -117,7 +117,7 @@ public class TeleOp_Test extends OpMode {
         robot.backLeftMotor.setPower(backLeftPower);
         robot.backRightMotor.setPower(backRightPower);
 
-        //robot.clawArm.setPower(clawPower);
+        //robot.clawArm.setPower(clawPower); TODO May Need removed
         robot.slidePull.setPower(liftPower);
 
         robot.spin.setPower(spinPower);
