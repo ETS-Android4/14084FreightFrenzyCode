@@ -129,7 +129,7 @@ public class TeleOp_Test extends OpMode {
 
     }
 
-    //TODO add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
+    //Add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
 
     //PID TUNING CODE
     //Coefficients need tuned
