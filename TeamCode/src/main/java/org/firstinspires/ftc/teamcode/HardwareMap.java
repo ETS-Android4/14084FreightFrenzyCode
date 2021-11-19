@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
+//import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 public class HardwareMap {
@@ -22,7 +22,7 @@ public class HardwareMap {
 
     //--Additional Variables--//
     com.qualcomm.robotcore.hardware.HardwareMap hardwareMap = null;
-    public ElapsedTime runtime     = new ElapsedTime();
+    //public ElapsedTime runtime     = new ElapsedTime();
 
     public HardwareMap() {
 
