@@ -50,15 +50,15 @@ public class TeleOp_Test extends OpMode {
 
         //double clawPower;
         //clawPower = gamepad2.left_stick_y * 0.4;
-//
+//------------------
 //TODO Test PID Code
-//
+//------------------
         double speed = gamepad2.left_stick_y * 0.4;
 
         PID(speed);
+//------------------
 //
-//
-//
+//------------------
         double spinPower;
         spinPower = gamepad2.right_trigger * 0.4;
 
@@ -117,7 +117,7 @@ public class TeleOp_Test extends OpMode {
         robot.backLeftMotor.setPower(backLeftPower);
         robot.backRightMotor.setPower(backRightPower);
 
-        //robot.clawArm.setPower(clawPower); TODO May Need removed
+        //robot.clawArm.setPower(clawPower); TODO May need removed
         robot.slidePull.setPower(liftPower);
 
         robot.spin.setPower(spinPower);
@@ -131,7 +131,10 @@ public class TeleOp_Test extends OpMode {
 
     //Add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
 
+    //-----------------
     //PID TUNING CODE
+    //-----------------
+
     //Coefficients need tuned
 
     double integral = 0;
