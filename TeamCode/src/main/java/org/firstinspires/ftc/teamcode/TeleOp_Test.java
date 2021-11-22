@@ -53,7 +53,7 @@ public class TeleOp_Test extends OpMode {
 //TODO Test PID Code
 //------------------
         double speed = gamepad2.left_stick_y * 0.4;
-
+        telemetry.addData("Speed", speed);
         PID(speed);
 //------------------
 //
