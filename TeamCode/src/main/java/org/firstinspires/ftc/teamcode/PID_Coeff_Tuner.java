@@ -11,7 +11,7 @@ public class PID_Coeff_Tuner extends OpMode {
 
     HardwareMap robot = new HardwareMap();
 
-    public static PIDCoefficients pidCoeffs = new PIDCoefficients(0,0,0);
+    public static PIDCoefficients pidCoeffs = new PIDCoefficients(1,0,0);
     public PIDCoefficients pidGains = new PIDCoefficients(0,0,0);
 
     ElapsedTime PIDTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
@@ -23,39 +23,64 @@ public class PID_Coeff_Tuner extends OpMode {
 
     @Override
     public void loop() {
-        double speed = gamepad2.left_stick_y * 0.4;
+        double speed = gamepad2.left_stick_y;
         telemetry.addData("Speed", speed);
         PID(speed);
 
         //Increment Percent
         if(gamepad1.a) {
             pidCoeffs.p = pidCoeffs.p + 0.1;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }
         //Decrement Percent
         if(gamepad1.b) {
             pidCoeffs.p = pidCoeffs.p - 0.1;
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         //Increment Integral
         if(gamepad1.x) {
             pidCoeffs.i = pidCoeffs.i + 0.1;
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         //Decrement Integral
         if(gamepad1.y) {
             pidCoeffs.i = pidCoeffs.i - 0.1;
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         //Increment Derivative
         if(gamepad1.dpad_up) {
             pidCoeffs.d = pidCoeffs.d + 0.1;
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         //Decrement Derivative
         if(gamepad1.dpad_down) {
             pidCoeffs.d = pidCoeffs.d - 0.1;
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         telemetry.addData("P Coeff", pidCoeffs.p);
