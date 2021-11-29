@@ -21,3 +21,7 @@ Math Operators
     Remainder               %
     Increment by 1          ++
     Decrement by 1          --
+
+Sleep Command
+    Thread.sleep(time in milliseconds);
+

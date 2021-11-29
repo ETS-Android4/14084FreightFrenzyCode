@@ -4,8 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.HardwareMap;
-
 @TeleOp
 
 public class RunToPosition_Test extends OpMode {
@@ -23,12 +21,23 @@ public class RunToPosition_Test extends OpMode {
 
     @Override
     public void loop() {
+       armMove();
+
+
+    }
+
+    public void armMove() {
         if (gamepad2.dpad_up) {
             robot.clawArm.setTargetPosition(robot.clawArm.getCurrentPosition() +200);
         } else if (gamepad2.dpad_down) {
             robot.clawArm.setTargetPosition(robot.clawArm.getCurrentPosition() -200);
         } else {
             robot.clawArm.setTargetPosition(robot.clawArm.getCurrentPosition());
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
