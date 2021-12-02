@@ -13,10 +13,10 @@ public class TeleOp_Test extends OpMode {
 //TODO Tune PID Coefficients
 
 
-    public static PIDCoefficients pidCoeffs = new PIDCoefficients(0,0,0);
-    public PIDCoefficients pidGains = new PIDCoefficients(0,0,0);
+//    public static PIDCoefficients pidCoeffs = new PIDCoefficients(0,0,0);
+//    public PIDCoefficients pidGains = new PIDCoefficients(0,0,0);
 
-    ElapsedTime PIDTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+//    ElapsedTime PIDTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
 
     @Override
@@ -47,14 +47,14 @@ public class TeleOp_Test extends OpMode {
         double backLeftPower;
         double backRightPower;
 
-        //double clawPower;
-        //clawPower = gamepad2.left_stick_y * 0.4;
+        double clawPower;
+        clawPower = gamepad2.left_stick_y * 0.4;
 //------------------
 //TODO Test PID Code
 //------------------
-        double speed = gamepad2.left_stick_y * 0.4;
-        telemetry.addData("Speed", speed);
-        PID(speed);
+//        double speed = gamepad2.left_stick_y * 0.4;
+//        telemetry.addData("Speed", speed);
+//        PID(speed);
 //------------------
 //
 //------------------
@@ -116,7 +116,7 @@ public class TeleOp_Test extends OpMode {
         robot.backLeftMotor.setPower(backLeftPower);
         robot.backRightMotor.setPower(backRightPower);
 
-        //robot.clawArm.setPower(clawPower); TODO May need removed
+        robot.clawArm.setPower(clawPower); //TODO May need removed
         robot.slidePull.setPower(liftPower);
 
         robot.spin.setPower(spinPower);
@@ -136,29 +136,29 @@ public class TeleOp_Test extends OpMode {
 
     //Coefficients need tuned
 
-    double integral = 0;
-    double lastError = 0;
+//    double integral = 0;
+//    double lastError = 0;
 
-    public void PID(double targetVelocity) {
+//    public void PID(double targetVelocity) {
 
-        PIDTimer.reset();
+//        PIDTimer.reset();
 
-        double currentVelocity = robot.clawArm.getVelocity();
+//        double currentVelocity = robot.clawArm.getVelocity();
 
-        double error = targetVelocity - currentVelocity;
+//        double error = targetVelocity - currentVelocity;
 
-        integral += error + PIDTimer.time();
+//        integral += error + PIDTimer.time();
 
-        double deltaError = error - lastError;
-        double derivative = deltaError / PIDTimer.time();
+//        double deltaError = error - lastError;
+//        double derivative = deltaError / PIDTimer.time();
 
-        pidGains.p = pidCoeffs.p * error;
-        pidGains.i = pidCoeffs.i * integral;
-        pidGains.d = pidCoeffs.d * derivative;
-        robot.clawArm.setVelocity(pidGains.p + pidGains.i + pidGains.d + targetVelocity);
+//        pidGains.p = pidCoeffs.p * error;
+//        pidGains.i = pidCoeffs.i * integral;
+//        pidGains.d = pidCoeffs.d * derivative;
+//        robot.clawArm.setVelocity(pidGains.p + pidGains.i + pidGains.d + targetVelocity);
 
 
-    }
+//    }
 
 
     @Override
