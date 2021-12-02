@@ -67,10 +67,10 @@ public class Test_1 extends OpMode {
 
         if(gamepad1.left_bumper) {
             if(gamepad1.right_bumper) {
-                frontLeftPower                 = -gamepad1.left_stick_y * 0.001;
-                frontRightPower                = -gamepad1.right_stick_y * 0.001;
-                backLeftPower                  = -gamepad1.left_stick_y * 0.001;
-                backRightPower                 = -gamepad1.right_stick_y * 0.001;
+                frontLeftPower                 = -gamepad1.left_stick_y * 0.05;
+                frontRightPower                = -gamepad1.right_stick_y * 0.05;
+                backLeftPower                  = -gamepad1.left_stick_y * 0.05;
+                backRightPower                 = -gamepad1.right_stick_y * 0.05;
 
                 telemetry.addData("Drive Mode", "Slow Tank");
 
@@ -84,10 +84,10 @@ public class Test_1 extends OpMode {
 
             }
         } else if(gamepad1.right_bumper) {
-            frontLeftPower                     = -gamepad1.left_stick_y * 0.001;
-            frontRightPower                    = -gamepad1.right_stick_y * 0.001;
-            backLeftPower                      = -gamepad1.right_stick_y * 0.001;
-            backRightPower                     = -gamepad1.left_stick_y * 0.001;
+            frontLeftPower                     = -gamepad1.left_stick_y * 0.05;
+            frontRightPower                    = -gamepad1.right_stick_y * 0.05;
+            backLeftPower                      = -gamepad1.right_stick_y * 0.05;
+            backRightPower                     = -gamepad1.left_stick_y * 0.05;
 
             telemetry.addData("Drive Mode"    , "Sloth Drive");
 
