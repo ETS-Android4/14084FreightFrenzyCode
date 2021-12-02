@@ -59,7 +59,7 @@ public class Test_1 extends OpMode {
 //
 //------------------
         double spinPower;
-        spinPower = gamepad2.right_trigger * 0.4;
+        spinPower = gamepad2.right_trigger * 1;
 
         double liftPower;
         liftPower = gamepad2.right_stick_y * 0.4;
@@ -67,35 +67,35 @@ public class Test_1 extends OpMode {
 
         if(gamepad1.left_bumper) {
             if(gamepad1.right_bumper) {
-                frontLeftPower                 = -gamepad1.left_stick_y * .5;
-                frontRightPower                = -gamepad1.right_stick_y * .5;
-                backLeftPower                  = -gamepad1.left_stick_y * .5;
-                backRightPower                 = -gamepad1.right_stick_y * .5;
+                frontLeftPower                 = -gamepad1.left_stick_y * 0.001;
+                frontRightPower                = -gamepad1.right_stick_y * 0.001;
+                backLeftPower                  = -gamepad1.left_stick_y * 0.001;
+                backRightPower                 = -gamepad1.right_stick_y * 0.001;
 
                 telemetry.addData("Drive Mode", "Slow Tank");
 
             } else {
-                frontLeftPower                 = -gamepad1.left_stick_y;
-                frontRightPower                = -gamepad1.right_stick_y;
-                backLeftPower                  = -gamepad1.left_stick_y;
-                backRightPower                 = -gamepad1.right_stick_y;
+                frontLeftPower                 = -gamepad1.left_stick_y * 0.1;
+                frontRightPower                = -gamepad1.right_stick_y * 0.1;
+                backLeftPower                  = -gamepad1.left_stick_y * 0.1;
+                backRightPower                 = -gamepad1.right_stick_y * 0.1;
 
                 telemetry.addData("Drive Mode", "Tank Drive");
 
             }
         } else if(gamepad1.right_bumper) {
-            frontLeftPower                     = -gamepad1.left_stick_y * 0.5;
-            frontRightPower                    = -gamepad1.right_stick_y * 0.5;
-            backLeftPower                      = -gamepad1.right_stick_y * 0.5;
-            backRightPower                     = -gamepad1.left_stick_y * 0.5;
+            frontLeftPower                     = -gamepad1.left_stick_y * 0.001;
+            frontRightPower                    = -gamepad1.right_stick_y * 0.001;
+            backLeftPower                      = -gamepad1.right_stick_y * 0.001;
+            backRightPower                     = -gamepad1.left_stick_y * 0.001;
 
             telemetry.addData("Drive Mode"    , "Sloth Drive");
 
         } else {
-            frontLeftPower                     = -gamepad1.left_stick_y;
-            frontRightPower                    = -gamepad1.right_stick_y;
-            backLeftPower                      = -gamepad1.right_stick_y;
-            backRightPower                     = -gamepad1.left_stick_y;
+            frontLeftPower                     = -gamepad1.left_stick_y * 0.1;
+            frontRightPower                    = -gamepad1.right_stick_y * 0.1;
+            backLeftPower                      = -gamepad1.right_stick_y * 0.1;
+            backRightPower                     = -gamepad1.left_stick_y * 0.1;
 
             telemetry.addData("Drive Mode", "Bean Drive");
 
