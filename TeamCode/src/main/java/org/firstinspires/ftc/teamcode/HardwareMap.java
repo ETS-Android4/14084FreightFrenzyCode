@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 //import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -16,6 +17,7 @@ public class HardwareMap {
     public DcMotorEx clawArm       = null; //Expansion Hub #3 Motor Port #0
     public DcMotor spin            = null; //Expansion Hub #3 Motor Port #1
     public DcMotor slidePull       = null; //Expansion Hub #3 Motor Port #2
+    public DcMotorEx testMotor     = null; //Expansion Hub #3 Motor Port #3
 
     //--Create Servo--//
     public Servo clawServo         = null;      //Control Hub Servo Port #0
@@ -32,15 +34,17 @@ public class HardwareMap {
         hardwareMap     = hwMap;
 
         //--Init Motor Info--//
-        frontRightMotor = hardwareMap.get(DcMotor.class, "FrontRightDrive");
-        frontLeftMotor  = hardwareMap.get(DcMotor.class, "FrontLeftDrive");
-        backRightMotor  = hardwareMap.get(DcMotor.class, "BackRightDrive");
-        backLeftMotor   = hardwareMap.get(DcMotor.class, "BackLeftDrive");
+        frontRightMotor = hardwareMap.get(DcMotor.class  , "FrontRightDrive");
+        frontLeftMotor  = hardwareMap.get(DcMotor.class  , "FrontLeftDrive");
+        backRightMotor  = hardwareMap.get(DcMotor.class  , "BackRightDrive");
+        backLeftMotor   = hardwareMap.get(DcMotor.class  , "BackLeftDrive");
 
         clawArm         = hardwareMap.get(DcMotorEx.class, "ClawArm");
-        slidePull       = hardwareMap.get(DcMotor.class, "SlidePull");
+        slidePull       = hardwareMap.get(DcMotor.class  , "SlidePull");
 
         spin            = hardwareMap.get(DcMotor.class, "Spin");
+
+        testMotor       = hardwareMap.get(DcMotorEx.class, "TestMotor");
 
         //--Init Servo Info--//
         clawServo       = hardwareMap.get(Servo.class  , "Claw");
@@ -56,6 +60,8 @@ public class HardwareMap {
 
         spin.setDirection(DcMotor.Direction.FORWARD);
 
+        testMotor.setDirection(DcMotor.Direction.FORWARD);
+
 
         //--Set Motor Mode--//
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -70,6 +76,8 @@ public class HardwareMap {
 
         spin.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        testMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         //--Set Zero Power Behavior--//
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -81,6 +89,8 @@ public class HardwareMap {
 
         spin.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
+        testMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         //--Set Motor Power to Zero--//
         frontRightMotor.setPower(0);
         frontLeftMotor.setPower(0);
@@ -91,6 +101,8 @@ public class HardwareMap {
         slidePull.setPower(0);
 
         spin.setPower(0);
+
+        testMotor.setPower(0);
 
 
     }

@@ -105,6 +105,8 @@ public class TeleOp_Test extends OpMode {
 
         robot.spin.setPower(spinPower);
 
+        robot.testMotor.setPower(clawPower);
+
         telemetry.addData("Status", "Driver Controlled");
         telemetry.addData("Action", "Press Stop When Finished");
         telemetry.update();
