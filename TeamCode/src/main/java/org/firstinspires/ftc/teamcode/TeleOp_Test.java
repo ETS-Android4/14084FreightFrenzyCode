@@ -10,10 +10,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class TeleOp_Test extends OpMode {
     HardwareMap robot = new HardwareMap();
 
+    double spinDirection;
+    private boolean oldLeftBumper;
+    private boolean oldRightBumper;
+
 
     @Override
     public void init() {
         robot.initialize(hardwareMap);
+
         telemetry.addData("Status", "Initializing");
         telemetry.update();
 
@@ -21,8 +26,27 @@ public class TeleOp_Test extends OpMode {
 
     @Override
     public void init_loop() {
-        telemetry.addData("Right Bumper", gamepad1.right_bumper);
-        telemetry.update();
+        //Right bumper is pressed to have motor spin correctly for red side
+        //Left bumper is press to have motor spin correctly for blue side
+        boolean newLeftBumper = gamepad1.left_bumper;
+        boolean newRightBumper = gamepad1.right_bumper;
+
+
+        if (newLeftBumper && !oldLeftBumper) {
+            spinDirection = 1;
+        } else if (newRightBumper && !oldRightBumper) {
+            spinDirection = -1;
+        }
+        oldLeftBumper = newLeftBumper;
+        oldRightBumper = newRightBumper;
+
+        if (spinDirection == -1) {
+            telemetry.addData("Spin Direction", "Red Side");
+            telemetry.addData("Press LeftBumper", "to switch to Blue Side");
+        } else {
+            telemetry.addData("Spin Direction", "Blue Side");
+            telemetry.addData("Press RightBumper", "to switch to Red Side");
+        }
     }
 
     @Override
@@ -103,9 +127,15 @@ public class TeleOp_Test extends OpMode {
         robot.clawArm.setPower(clawPower);
         robot.slidePull.setPower(liftPower);
 
-        robot.spin.setPower(spinPower);
+        robot.spin.setPower(spinPower * spinDirection);
 
         robot.testMotor.setPower(clawPower);
+
+        if (spinDirection == -1) {
+            telemetry.addData("Spin Direction", "Red Side");
+        } else {
+            telemetry.addData("Spin Direction", "Blue Side");
+        }
 
         telemetry.addData("Status", "Driver Controlled");
         telemetry.addData("Action", "Press Stop When Finished");
