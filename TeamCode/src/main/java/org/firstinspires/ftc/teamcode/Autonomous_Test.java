@@ -16,7 +16,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 import java.util.Locale;
 
-@Autonomous(name = "Autonomous Test" , group = "robot")
+@Autonomous(name = "Autonomous Test" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
 
 public class Autonomous_Test extends LinearOpMode {
     HardwareMap robot   = new HardwareMap();

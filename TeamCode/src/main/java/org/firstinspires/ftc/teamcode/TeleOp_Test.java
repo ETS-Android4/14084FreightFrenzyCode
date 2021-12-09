@@ -47,11 +47,15 @@ public class TeleOp_Test extends OpMode {
             telemetry.addData("Spin Direction", "Blue Side");
             telemetry.addData("Press RightBumper", "to switch to Red Side");
         }
+
+        telemetry.addData("Status", "Awaiting User Input");
+        telemetry.addData("Action", "Press Play to Start");
+        telemetry.update();
     }
 
     @Override
     public void start() {
-        telemetry.addData("Status", "Start");
+        telemetry.addData("Status", "Starting");
         telemetry.update();
 
     }
@@ -150,7 +154,8 @@ public class TeleOp_Test extends OpMode {
 
     @Override
     public void stop() {
-
+        telemetry.addData("Status", "Stopped");
+        telemetry.update();
     }
 
 }
