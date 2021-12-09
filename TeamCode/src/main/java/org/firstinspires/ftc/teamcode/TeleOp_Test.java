@@ -154,6 +154,7 @@ public class TeleOp_Test extends OpMode {
 
     @Override
     public void stop() {
+        //TODO make sure all variables get set to 0 here so the robot actually stops
         telemetry.addData("Status", "Stopped");
         telemetry.update();
     }
