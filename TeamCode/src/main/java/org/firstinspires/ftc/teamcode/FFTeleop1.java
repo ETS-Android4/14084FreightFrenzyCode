@@ -8,8 +8,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class FFTeleop1 extends OpMode {
     HardwareMap robot = new HardwareMap();
 
-
-
     double spinDirection;
 
     double frontLeftPower;
@@ -33,7 +31,6 @@ public class FFTeleop1 extends OpMode {
 
         robot.clawServo.setPosition(0);
 
-
     }
 
     @Override
@@ -43,11 +40,6 @@ public class FFTeleop1 extends OpMode {
         boolean newLeftBumper = gamepad1.dpad_left;
         boolean newRightBumper = gamepad1.dpad_right;
 
-        oldLeftBumper = newLeftBumper;
-        oldRightBumper = newRightBumper;
-
-        spinDirection = -1;
-
         /*Latch*/
         if (newLeftBumper && !oldLeftBumper) {
             spinDirection = 1;
@@ -55,7 +47,8 @@ public class FFTeleop1 extends OpMode {
             spinDirection = -1;
         }
 
-
+        oldLeftBumper = newLeftBumper;
+        oldRightBumper = newRightBumper;
 
         if (spinDirection == -1) {
             telemetry.addData("Spin Direction", "Red Side");

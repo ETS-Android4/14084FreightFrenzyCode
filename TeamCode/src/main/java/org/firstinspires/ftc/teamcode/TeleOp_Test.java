@@ -3,8 +3,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.PIDCoefficients;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="TeleOp Test", group="robot")
 @Disabled
@@ -34,8 +32,6 @@ public class TeleOp_Test extends OpMode {
         //Left bumper is press to have motor spin correctly for blue side
         boolean newLeftBumper = gamepad1.left_bumper;
         boolean newRightBumper = gamepad1.right_bumper;
-
-        spinDirection = -1;
 
         if (newLeftBumper && !oldLeftBumper) {
             spinDirection = 1;
