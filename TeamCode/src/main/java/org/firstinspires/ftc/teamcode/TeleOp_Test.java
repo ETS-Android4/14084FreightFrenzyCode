@@ -33,6 +33,7 @@ public class TeleOp_Test extends OpMode {
         boolean newLeftBumper = gamepad1.left_bumper;
         boolean newRightBumper = gamepad1.right_bumper;
 
+        spinDirection = -1;
 
         if (newLeftBumper && !oldLeftBumper) {
             spinDirection = 1;
