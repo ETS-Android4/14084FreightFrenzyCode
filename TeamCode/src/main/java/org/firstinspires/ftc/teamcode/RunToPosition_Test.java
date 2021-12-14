@@ -1,12 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+//import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+//import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 @TeleOp
-@Disabled
 
 public class RunToPosition_Test extends OpMode {
     HardwareMap robot = new HardwareMap();
@@ -14,32 +15,64 @@ public class RunToPosition_Test extends OpMode {
     @Override
     public void init() {
         robot.initialize(hardwareMap);
-        robot.clawArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.clawArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.clawArm.setTargetPosition(0);
-        robot.clawArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.clawArm.setPower(.5);
+
+        robot.testMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        robot.testMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        robot.testMotor.setTargetPosition(0);
+
+        robot.testMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.testMotor.setPower(0);
+
     }
 
     @Override
     public void loop() {
-       armMove();
+        armMove();
+
+
+        while(robot.testMotor.isBusy()){
+            if(!robot.testMotor.isBusy()) {
+                break;
+            }
+        }
+
+        robot.testMotor.setPower(0);
+
 
 
     }
 
     public void armMove() {
-        if (gamepad2.dpad_up) {
-            robot.clawArm.setTargetPosition(robot.clawArm.getCurrentPosition() +200);
-        } else if (gamepad2.dpad_down) {
-            robot.clawArm.setTargetPosition(robot.clawArm.getCurrentPosition() -200);
-        } else {
-            robot.clawArm.setTargetPosition(robot.clawArm.getCurrentPosition());
+        int position = robot.testMotor.getCurrentPosition();
+
+        robot.testMotor.setPower(0);
+
+        if (!robot.spin.isBusy()) {
+            if (gamepad1.dpad_down && !(position < -80)) {
+                position = position - 40;
+
+            } else if (gamepad1.dpad_up && !(position > 120)) {
+                position = position + 40;
+
+            }
+            robot.testMotor.setTargetPosition(position);
+
+            robot.testMotor.setPower(.25);
+
+            telemetry.addData("Position", robot.testMotor.getCurrentPosition());
+            telemetry.update();
+
         }
+
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+
     }
 }
