@@ -34,9 +34,8 @@ public class RunToPosition_Test extends OpMode {
 
 
         while(robot.testMotor.isBusy()){
-            if(!robot.testMotor.isBusy()) {
-                break;
-            }
+            telemetry.addData("Test Motor", "is Busy");
+            telemetry.update();
         }
 
         robot.testMotor.setPower(0);
