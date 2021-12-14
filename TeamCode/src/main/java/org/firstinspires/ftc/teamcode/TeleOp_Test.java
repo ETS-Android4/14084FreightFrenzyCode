@@ -19,6 +19,8 @@ public class TeleOp_Test extends OpMode {
     public void init() {
         robot.initialize(hardwareMap);
 
+        robot.clawServo.setPosition(0);
+
         telemetry.addData("Status", "Initializing");
         telemetry.update();
 
@@ -42,10 +44,10 @@ public class TeleOp_Test extends OpMode {
 
         if (spinDirection == -1) {
             telemetry.addData("Spin Direction", "Red Side");
-            telemetry.addData("Press LeftBumper", "to switch to Blue Side");
+            telemetry.addData("Press GP1 LeftBumper", "to switch to Blue Side");
         } else {
             telemetry.addData("Spin Direction", "Blue Side");
-            telemetry.addData("Press RightBumper", "to switch to Red Side");
+            telemetry.addData("Press GP1 RightBumper", "to switch to Red Side");
         }
 
         telemetry.addData("Status", "Awaiting User Input");
@@ -71,7 +73,7 @@ public class TeleOp_Test extends OpMode {
         clawPower = gamepad2.left_stick_y * 0.4;
 
         double spinPower;
-        spinPower = gamepad2.right_trigger * 0.4;
+        spinPower = gamepad2.right_trigger * 0.1;
 
         double liftPower;
         liftPower = gamepad2.right_stick_y * 0.4;
@@ -115,7 +117,7 @@ public class TeleOp_Test extends OpMode {
 
         if(gamepad2.dpad_up) {
             //telemetry.addData("Lemon", "true");
-            robot.clawServo.setPosition(.5);
+            robot.clawServo.setPosition(.55);
         }
 
         if(gamepad2.dpad_down) {
