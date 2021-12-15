@@ -32,12 +32,6 @@ public class RunToPosition_Test extends OpMode {
     public void loop() {
         armMove();
 
-
-        while(robot.testMotor.isBusy()){
-            telemetry.addData("Test Motor", "is Busy");
-            telemetry.update();
-        }
-
         robot.testMotor.setPower(0);
 
 
@@ -62,6 +56,7 @@ public class RunToPosition_Test extends OpMode {
             robot.testMotor.setPower(.25);
 
             telemetry.addData("Position", robot.testMotor.getCurrentPosition());
+            telemetry.addData("Motor is busy = ", robot.testMotor.isBusy());
             telemetry.update();
 
         }

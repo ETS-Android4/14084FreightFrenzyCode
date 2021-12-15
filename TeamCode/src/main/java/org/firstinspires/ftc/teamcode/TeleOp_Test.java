@@ -3,9 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name="TeleOp Test", group="robot")
-@Disabled
+//@Disabled
 
 public class TeleOp_Test extends OpMode {
     HardwareMap robot = new HardwareMap();
@@ -23,6 +24,16 @@ public class TeleOp_Test extends OpMode {
 
         telemetry.addData("Status", "Initializing");
         telemetry.update();
+
+        robot.testMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        robot.testMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        robot.testMotor.setTargetPosition(0);
+
+        robot.testMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.testMotor.setPower(0);
 
     }
 
@@ -114,12 +125,12 @@ public class TeleOp_Test extends OpMode {
 
         }
 
-        if(gamepad2.dpad_up) {
+        if(gamepad2.a) {
             //telemetry.addData("Lemon", "true");
             robot.clawServo.setPosition(.55);
         }
 
-        if(gamepad2.dpad_down) {
+        if(gamepad2.b) {
             //telemetry.addData("Lemon", "false");
             robot.clawServo.setPosition(0);
         }
@@ -134,7 +145,8 @@ public class TeleOp_Test extends OpMode {
 
         robot.spin.setPower(spinPower * spinDirection);
 
-        robot.testMotor.setPower(clawPower);
+        armMove();
+        robot.testMotor.setPower(0);
 
         if (spinDirection == -1) {
             telemetry.addData("Spin Direction", "Red Side");
@@ -150,6 +162,38 @@ public class TeleOp_Test extends OpMode {
     }
 
     //Add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
+
+    public void armMove() {
+        int position = robot.testMotor.getCurrentPosition();
+
+        robot.testMotor.setPower(0);
+
+        if (!robot.spin.isBusy()) {
+            if (gamepad2.dpad_down && !(position < -51)) {
+                position = position - 50;
+
+            } else if (gamepad2.dpad_up && !(position > 1000)) {
+                position = position + 50;
+
+            }
+            robot.testMotor.setTargetPosition(position);
+
+            robot.testMotor.setPower(.25);
+
+            telemetry.addData("Position", robot.testMotor.getCurrentPosition());
+            telemetry.addData("Motor is busy = ", robot.testMotor.isBusy());
+            telemetry.update();
+
+        }
+
+        if(robot.testMotor.isBusy()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 
