@@ -37,8 +37,8 @@ public class FFTeleop1 extends OpMode {
     public void init_loop() {
         //Right dpad is pressed to have motor spin correctly for red side
         //Left dpad is press to have motor spin correctly for blue side
-        boolean newLeftBumper = gamepad1.dpad_left;
-        boolean newRightBumper = gamepad1.dpad_right;
+        boolean newLeftBumper = gamepad2.dpad_left;
+        boolean newRightBumper = gamepad2.dpad_right;
 
         /*Latch*/
         if (newLeftBumper && !oldLeftBumper) {
@@ -51,11 +51,11 @@ public class FFTeleop1 extends OpMode {
         oldRightBumper = newRightBumper;
 
         if (spinDirection == -1) {
-            telemetry.addData("Spin Direction", "Red Side");
-            telemetry.addData("Press GP2 DPadLeft", "to switch to Blue Side");
-        } else {
             telemetry.addData("Spin Direction", "Blue Side");
-            telemetry.addData("Press GP2 DPadRight", "to switch to Red Side");
+            telemetry.addData("Press GP2 DPadLeft", "to switch to Red Side");
+        } else {
+            telemetry.addData("Spin Direction", "Red Side");
+            telemetry.addData("Press GP2 DPadRight", "to switch to Blue Side");
         }
 
         telemetry.addData("Status", "Awaiting User Input");
@@ -73,7 +73,7 @@ public class FFTeleop1 extends OpMode {
     @Override
     public void loop() {
         /*Display Carousel Direction*/{
-            if (spinDirection == -1) {
+            if (spinDirection == 1) {
                 telemetry.addData("Spin Direction", "Red Side");
             } else {
                 telemetry.addData("Spin Direction", "Blue Side");
@@ -86,7 +86,7 @@ public class FFTeleop1 extends OpMode {
         }
 
         /*Carousel Movement*/{
-            spinPower = gamepad2.right_trigger * 0.1;
+            spinPower = gamepad2.right_trigger * 0.2;
         }
 
         /*Servo Grabber Movement*/{
