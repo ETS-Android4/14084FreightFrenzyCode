@@ -12,6 +12,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class RunToPosition_Test extends OpMode {
     HardwareMap robot = new HardwareMap();
 
+    int position;
+    int requestPosition;
+
     @Override
     public void init() {
         robot.initialize(hardwareMap);
@@ -26,10 +29,13 @@ public class RunToPosition_Test extends OpMode {
 
         robot.testMotor.setPower(0);
 
+
     }
 
     @Override
     public void loop() {
+        requestPosition = Math.round(gamepad1.right_stick_y * 40) + 40;
+
         armMove();
 
         robot.testMotor.setPower(0);
@@ -39,18 +45,30 @@ public class RunToPosition_Test extends OpMode {
     }
 
     public void armMove() {
-        int position = robot.testMotor.getCurrentPosition();
+        position = robot.testMotor.getCurrentPosition();
 
         robot.testMotor.setPower(0);
 
+        /*
         if (!robot.spin.isBusy()) {
             if (gamepad1.dpad_down && !(position < -80)) {
                 position = position - 40;
 
-            } else if (gamepad1.dpad_up && !(position > 120)) {
+            } else if (gamepad1.dpad_up && !(position > 1000)) {
                 position = position + 40;
 
             }
+        */
+         if (!robot.spin.isBusy()) {
+             if (!(position < -80) && !(position > 1000)) {
+                 position  = position + requestPosition;
+             } else if (position < -80) {
+                 position = -70;
+             } else {
+                 position = 990;
+             }
+         }
+
             robot.testMotor.setTargetPosition(position);
 
             robot.testMotor.setPower(.25);
@@ -61,12 +79,6 @@ public class RunToPosition_Test extends OpMode {
 
         }
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 
     }
-}
