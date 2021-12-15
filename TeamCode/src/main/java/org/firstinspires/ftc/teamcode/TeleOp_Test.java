@@ -16,6 +16,7 @@ public class TeleOp_Test extends OpMode {
     private boolean oldRightBumper;
 
     boolean aPress;
+    boolean wait;
 
 
 
@@ -25,6 +26,8 @@ public class TeleOp_Test extends OpMode {
         robot.initialize(hardwareMap);
 
         aPress = false;
+
+        wait = true;
 
         robot.clawServo.setPosition(0);
 
@@ -193,6 +196,7 @@ public class TeleOp_Test extends OpMode {
     //Add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
 
     public void clawGrab() {
+
         if (aPress) {
             robot.clawServo.setPosition(.55);
             aPress = false;
@@ -200,6 +204,8 @@ public class TeleOp_Test extends OpMode {
             robot.clawServo.setPosition(0);
             aPress = true;
         }
+
+
     }
 
     public void slideMove() {
