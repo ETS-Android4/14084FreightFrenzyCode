@@ -34,7 +34,7 @@ public class RunToPosition_Test extends OpMode {
 
     @Override
     public void loop() {
-        requestPosition = Math.round(gamepad1.right_stick_y * 40) + 40;
+        requestPosition = Math.round(gamepad1.right_stick_y * 40);
 
         armMove();
 
@@ -59,9 +59,10 @@ public class RunToPosition_Test extends OpMode {
 
             }
         */
+
          if (!robot.spin.isBusy()) {
              if (!(position < -80) && !(position > 1000)) {
-                 position  = position + requestPosition;
+                 position = position + requestPosition;
              } else if (position < -80) {
                  position = -70;
              } else {
