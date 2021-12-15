@@ -18,9 +18,13 @@ public class TeleOp_Test extends OpMode {
     boolean aPress;
 
 
+
+
     @Override
     public void init() {
         robot.initialize(hardwareMap);
+
+        aPress = false;
 
         robot.clawServo.setPosition(0);
 
@@ -154,13 +158,7 @@ public class TeleOp_Test extends OpMode {
         */
 
         if (gamepad2.a) {
-            if (aPress) {
-                robot.clawServo.setPosition(.55);
-                aPress = false;
-            } else {
-                robot.clawServo.setPosition(0);
-                aPress = true;
-            }
+            clawGrab();
         }
 
         robot.frontLeftMotor.setPower(frontLeftPower);
@@ -193,6 +191,16 @@ public class TeleOp_Test extends OpMode {
     }
 
     //Add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
+
+    public void clawGrab() {
+        if (aPress) {
+            robot.clawServo.setPosition(.55);
+            aPress = false;
+        } else {
+            robot.clawServo.setPosition(0);
+            aPress = true;
+        }
+    }
 
     public void slideMove() {
         int positionSlide = robot.slidePull.getCurrentPosition();
