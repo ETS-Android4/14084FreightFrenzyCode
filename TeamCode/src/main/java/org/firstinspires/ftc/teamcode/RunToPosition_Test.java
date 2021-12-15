@@ -34,7 +34,7 @@ public class RunToPosition_Test extends OpMode {
 
     @Override
     public void loop() {
-        requestPosition = Math.round(gamepad1.right_stick_y * 80);
+        requestPosition = Math.round(gamepad1.right_stick_y) * 100;
 
         armMove();
 
@@ -60,21 +60,22 @@ public class RunToPosition_Test extends OpMode {
             }
         */
 
-         if (!robot.spin.isBusy()) {
+         if (!robot.testMotor.isBusy()) {
              if (!(position < -80) && !(position > 680)) {
                  position = position + requestPosition;
              } else if (position < -80) {
                  position = -70;
              } else {
-                 position = 670;
+                 position = 650;
              }
          }
 
             robot.testMotor.setTargetPosition(position);
 
-            robot.testMotor.setPower(.5);
+            robot.testMotor.setPower(1);
 
-            telemetry.addData("Position", robot.testMotor.getCurrentPosition());
+            telemetry.addData("Target Position", position);
+            telemetry.addData("Actual Position", robot.testMotor.getCurrentPosition());
             telemetry.addData("Motor is busy = ", robot.testMotor.isBusy());
             telemetry.update();
 
