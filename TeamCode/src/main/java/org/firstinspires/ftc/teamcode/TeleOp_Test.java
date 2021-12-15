@@ -15,6 +15,8 @@ public class TeleOp_Test extends OpMode {
     private boolean oldLeftBumper;
     private boolean oldRightBumper;
 
+    boolean aPress;
+
 
     @Override
     public void init() {
@@ -34,6 +36,18 @@ public class TeleOp_Test extends OpMode {
         robot.testMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         robot.testMotor.setPower(0);
+
+
+
+        robot.slidePull.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        robot.slidePull.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        robot.slidePull.setTargetPosition(0);
+
+        robot.slidePull.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.slidePull.setPower(0);
 
     }
 
@@ -125,6 +139,8 @@ public class TeleOp_Test extends OpMode {
 
         }
 
+        /*
+
         if(gamepad2.a) {
             //telemetry.addData("Lemon", "true");
             robot.clawServo.setPosition(.55);
@@ -133,6 +149,18 @@ public class TeleOp_Test extends OpMode {
         if(gamepad2.b) {
             //telemetry.addData("Lemon", "false");
             robot.clawServo.setPosition(0);
+        }
+
+        */
+
+        if (gamepad2.a) {
+            if (aPress) {
+                robot.clawServo.setPosition(.55);
+                aPress = false;
+            } else {
+                robot.clawServo.setPosition(0);
+                aPress = true;
+            }
         }
 
         robot.frontLeftMotor.setPower(frontLeftPower);
@@ -144,6 +172,9 @@ public class TeleOp_Test extends OpMode {
         robot.slidePull.setPower(liftPower);
 
         robot.spin.setPower(spinPower * spinDirection);
+
+        slideMove();
+        robot.slidePull.setPower(0);
 
         armMove();
         robot.testMotor.setPower(0);
@@ -163,36 +194,54 @@ public class TeleOp_Test extends OpMode {
 
     //Add PID TUNING https://www.youtube.com/watch?v=FDRWcK-orJs
 
+    public void slideMove() {
+        int positionSlide = robot.slidePull.getCurrentPosition();
+
+        robot.slidePull.setPower(0);
+
+        if (!robot.slidePull.isBusy()) {
+            if (gamepad2.x && !(positionSlide < -1)) {
+                positionSlide = positionSlide - 10;
+
+            } else if (gamepad2.y && !(positionSlide > 2000)) {
+                positionSlide = positionSlide + 10;
+            }
+
+            robot.slidePull.setTargetPosition(positionSlide);
+
+            robot.slidePull.setPower(1);
+
+
+        }
+
+        telemetry.addData("Pully Position", robot.slidePull.getCurrentPosition());
+        telemetry.addData("Pully Motor is Busy = ", robot.slidePull.isBusy());
+    }
+
     public void armMove() {
-        int position = robot.testMotor.getCurrentPosition();
+        int positionArm = robot.testMotor.getCurrentPosition();
 
         robot.testMotor.setPower(0);
 
-        if (!robot.spin.isBusy()) {
-            if (gamepad2.dpad_down && !(position < -51)) {
-                position = position - 50;
+        if (!robot.testMotor.isBusy()) {
+            if (gamepad2.dpad_down && !(positionArm < -51)) {
+                positionArm = positionArm - 50;
 
-            } else if (gamepad2.dpad_up && !(position > 1000)) {
-                position = position + 50;
+            } else if (gamepad2.dpad_up && !(positionArm > 1000)) {
+                positionArm = positionArm + 50;
 
             }
-            robot.testMotor.setTargetPosition(position);
+            robot.testMotor.setTargetPosition(positionArm);
 
             robot.testMotor.setPower(.25);
 
-            telemetry.addData("Position", robot.testMotor.getCurrentPosition());
-            telemetry.addData("Motor is busy = ", robot.testMotor.isBusy());
-            telemetry.update();
 
         }
 
-        if(robot.testMotor.isBusy()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        telemetry.addData("Arm Position", robot.testMotor.getCurrentPosition());
+        telemetry.addData("Arm Motor is busy = ", robot.testMotor.isBusy());
+
+
     }
 
 
