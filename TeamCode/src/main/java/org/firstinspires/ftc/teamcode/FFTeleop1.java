@@ -91,7 +91,7 @@ public class FFTeleop1 extends OpMode {
 
         /*Servo Grabber Movement*/{
             if (gamepad2.dpad_up) {
-                robot.clawServo.setPosition(.55);
+                robot.clawServo.setPosition(.75);
             } else if (gamepad2.dpad_down) {
                 robot.clawServo.setPosition(0);
             }
