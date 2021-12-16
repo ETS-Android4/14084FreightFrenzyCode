@@ -34,7 +34,7 @@ public class RunToPosition_Test extends OpMode {
 
     @Override
     public void loop() {
-        requestPosition = Math.round(gamepad1.right_stick_y) * 100;
+        requestPosition = Math.round(gamepad1.right_stick_y) * 150;
 
         armMove();
 
