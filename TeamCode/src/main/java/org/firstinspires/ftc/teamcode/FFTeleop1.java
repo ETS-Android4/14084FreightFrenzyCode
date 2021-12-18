@@ -72,6 +72,8 @@ public class FFTeleop1 extends OpMode {
 
     @Override
     public void loop() {
+        latch();
+
         /*Display Carousel Direction*/{
             if (spinDirection == 1) {
                 telemetry.addData("Spin Direction", "Red Side");
@@ -160,5 +162,19 @@ public class FFTeleop1 extends OpMode {
             telemetry.addData("Action", "Press Stop When Finished");
             telemetry.update();
         }
+    }
+
+    public void latch() {
+        boolean newLeftBumper = gamepad2.dpad_left;
+        boolean newRightBumper = gamepad2.dpad_right;
+
+        if (newLeftBumper && !oldLeftBumper) {
+            spinDirection = 1;
+        } else if (newRightBumper && !oldRightBumper) {
+            spinDirection = -1;
+        }
+
+        oldLeftBumper = newLeftBumper;
+        oldRightBumper = newRightBumper;
     }
 }
