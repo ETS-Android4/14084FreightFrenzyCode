@@ -37,7 +37,7 @@ public class FFAutoDriveForward extends LinearOpMode {
 
 
         timer.reset();
-        while (opModeIsActive() && (timer.milliseconds() < 3000)) {
+        while (opModeIsActive() && (timer.milliseconds() < 2700)) {
 
             telemetry.addData("Operation", "Drive Forward");
             telemetry.update();
