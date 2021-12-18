@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name="TeleOp Test", group="robot")
-//@Disabled
+@Disabled
 
 public class TeleOp_Test extends OpMode {
     HardwareMap robot = new HardwareMap();

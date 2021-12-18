@@ -86,7 +86,7 @@ public class FFTeleop1 extends OpMode {
         }
 
         /*Carousel Movement*/{
-            spinPower = gamepad2.right_trigger * 0.2;
+            spinPower = gamepad2.right_trigger * 0.8;
         }
 
         /*Servo Grabber Movement*/{
