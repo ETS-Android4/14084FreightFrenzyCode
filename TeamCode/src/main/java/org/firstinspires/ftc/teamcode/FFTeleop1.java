@@ -29,18 +29,21 @@ public class FFTeleop1 extends OpMode {
         telemetry.addData("Status", "Initializing");
         telemetry.update();
 
-        robot.clawServo.setPosition(0);
+        robot.clawServo.setPosition(.75);
 
     }
 
     @Override
     public void init_loop() {
+
+        /*
         //Right dpad is pressed to have motor spin correctly for red side
         //Left dpad is press to have motor spin correctly for blue side
         boolean newLeftBumper = gamepad2.dpad_left;
         boolean newRightBumper = gamepad2.dpad_right;
 
         /*Latch*/
+        /*
         if (newLeftBumper && !oldLeftBumper) {
             spinDirection = 1;
         } else if (newRightBumper && !oldRightBumper) {
@@ -57,6 +60,7 @@ public class FFTeleop1 extends OpMode {
             telemetry.addData("Spin Direction", "Red Side");
             telemetry.addData("Press GP2 DPadRight", "to switch to Blue Side");
         }
+        */
 
         telemetry.addData("Status", "Awaiting User Input");
         telemetry.addData("Action", "Press Play to Start");
@@ -72,15 +76,18 @@ public class FFTeleop1 extends OpMode {
 
     @Override
     public void loop() {
-        latch();
+        //latch();
 
-        /*Display Carousel Direction*/{
+        /*Display Carousel Direction*/
+        /*
+        {
             if (spinDirection == 1) {
                 telemetry.addData("Spin Direction", "Red Side");
             } else {
                 telemetry.addData("Spin Direction", "Blue Side");
             }
         }
+         */
 
         /*Arm Movement*/{
             clawPower = gamepad2.left_stick_y * 0.4;
@@ -152,7 +159,8 @@ public class FFTeleop1 extends OpMode {
         robot.clawArm.setPower(clawPower);
         robot.slidePull.setPower(liftPower);
 
-        robot.spin.setPower(spinPower * spinDirection);
+        //robot.spin.setPower(spinPower * spinDirection);
+        robot.spin.setPower(gamepad2.right_trigger - gamepad2.left_trigger);
 
         robot.testMotor.setPower(clawPower);
         }
@@ -163,7 +171,7 @@ public class FFTeleop1 extends OpMode {
             telemetry.update();
         }
     }
-
+/*
     public void latch() {
         boolean newLeftBumper = gamepad2.dpad_left;
         boolean newRightBumper = gamepad2.dpad_right;
@@ -177,4 +185,6 @@ public class FFTeleop1 extends OpMode {
         oldLeftBumper = newLeftBumper;
         oldRightBumper = newRightBumper;
     }
+
+ */
 }

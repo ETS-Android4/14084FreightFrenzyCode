@@ -15,7 +15,7 @@ public class FFAutoDriveForward extends LinearOpMode {
     public void runOpMode() {
         robot.initialize(hardwareMap);
 
-        robot.clawServo.setPosition(0);
+        robot.clawServo.setPosition(.75);
 
         telemetry.addData("Status","Initialized");
         telemetry.addData("Action", "Press Play to Start");
