@@ -43,6 +43,11 @@ public class FFAutoDriveForward extends LinearOpMode {
             telemetry.update();
         }
 
+        //note, this covers roughly 2.8 feet in 2.7 seconds with current weight and batteries close to full charge
+        //not exact measurement, but close enough to build autonomous using these numbers
+        //however there is not enough info for strafe calculations
+
+
         robot.frontRightMotor.setPower(0);
         robot.frontLeftMotor.setPower(0);
         robot.backRightMotor.setPower(0);
