@@ -20,6 +20,9 @@ import java.util.Locale;
 @Autonomous(name = "Autonomous Test" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
 @Disabled
 
+//IMU code works
+
+
 public class Autonomous_Test extends LinearOpMode {
     HardwareMap robot   = new HardwareMap();
     ElapsedTime runtime = new ElapsedTime();
