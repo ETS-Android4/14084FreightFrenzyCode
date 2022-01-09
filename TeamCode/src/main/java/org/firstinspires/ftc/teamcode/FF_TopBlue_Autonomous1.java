@@ -5,6 +5,20 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+/* Plan
+* Start In front of barcode farthest from spectators blue side
+* use tensor flow to check where the duck/TSE is
+* record location
+* dont touch duck/TeamScoringElement
+* place preload on correct level based on recorded location
+*   requires using encoders on both pulley and clawarm motors + imu
+* ?spin carousel?
+* option to collect freight
+*   requires going fast + potentially imu
+* navigate to either alliance storage or warehouse - potentially using vuforia
+* park completely
+* enter teleop
+* */
 
 @Autonomous(name = "Top Blue Autonomous" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
 public class FF_TopBlue_Autonomous1 extends LinearOpMode {
