@@ -34,6 +34,10 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
         robot.initialize(hardwareMap);
 
 
+        //Init Vuforia + TensorFlow
+
+
+        //Init IMU
 
 
         //Add Telemetry text to Driver Station Screen
@@ -45,6 +49,16 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
         waitForStart();
 
         //Run Autonomous code
+
+        //Detect and Record Duck/TSE Position
+
+        //Deliver preload freight
+
+        //Detect Location using Vuforia
+
+        //Spin Carousel
+
+        //Park
 
 
     }
