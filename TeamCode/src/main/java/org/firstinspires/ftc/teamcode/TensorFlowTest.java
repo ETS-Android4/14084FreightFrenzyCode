@@ -87,7 +87,7 @@ public class TensorFlowTest extends LinearOpMode {
     //TODO Add Vuforia Key
 
     private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+            "AWArxij/////AAABmU9pZ14aXU/Ni8zL0BpugmI4gzpRz+NDmUkl7hozml6Zn/NQAvnTu0Oqkibpz51DmRTwPANbeSZA6+mKGj/LLyfA9XS19+jvCJIwr7mlfMI3Q8LxiUgkAGl8pj18Mtj77POW9AGGvoGymMOzi7w4bdw7pOiaiYzk83a7e2OoEbH6z+0UUg4Pg8p3YdCBXAHEgxLKS37G4QUolVV+beHM0ESWBAm4dpMsNCvTYM4UyN309e1z9CIIXQTC3NiB8MB3/uRJ+GakwYqbmBtnCC68TUKkHz+4B+ftBDaBPHz2A4u+tEHSKYoqdzr9jmS9rBvHKRKJEnC7Eaatz1msEAOc4xUFNf4Ji6diWtY5UrSm2Rs4\n";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia

@@ -12,6 +12,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.Locale;
 
@@ -34,6 +36,21 @@ import java.util.Locale;
 public class FF_TopBlue_Autonomous1 extends LinearOpMode {
     //Define all variables
     HardwareMap robot = new HardwareMap();
+
+    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
+    private static final String[] LABELS = {
+            "Ball",
+            "Cube",
+            "Duck",
+            "Marker"
+    };
+
+    private static final String VUFORIA_KEY =
+            "AWArxij/////AAABmU9pZ14aXU/Ni8zL0BpugmI4gzpRz+NDmUkl7hozml6Zn/NQAvnTu0Oqkibpz51DmRTwPANbeSZA6+mKGj/LLyfA9XS19+jvCJIwr7mlfMI3Q8LxiUgkAGl8pj18Mtj77POW9AGGvoGymMOzi7w4bdw7pOiaiYzk83a7e2OoEbH6z+0UUg4Pg8p3YdCBXAHEgxLKS37G4QUolVV+beHM0ESWBAm4dpMsNCvTYM4UyN309e1z9CIIXQTC3NiB8MB3/uRJ+GakwYqbmBtnCC68TUKkHz+4B+ftBDaBPHz2A4u+tEHSKYoqdzr9jmS9rBvHKRKJEnC7Eaatz1msEAOc4xUFNf4Ji6diWtY5UrSm2Rs4\n";
+
+    private VuforiaLocalizer vuforia;
+
+    private TFObjectDetector tfod;
 
     boolean continueLoop = true;
 
