@@ -98,10 +98,14 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
     @Override
     //Run Op Mode loop
     public void runOpMode() {
+
+        telemetry.addData("Init", "HardwareMap");
+        telemetry.update();
         //Initialize Robot
         robot.initialize(hardwareMap);
 
-
+        telemetry.addData("Init", "Tensor Flow");
+        telemetry.update();
         //Init Vuforia + TensorFlow
 
 
@@ -128,29 +132,51 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
 
 
         //Vuforia Init
-
+        telemetry.addData("Init", "Vuforia");
+        telemetry.update();
 
         // Connect to the camera we are to use.  This name must match what is set up in Robot Configuration
         webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
 
+
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
-        // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+        //VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        telemetry.addData("Status", "Grab Key");
+        telemetry.update();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
+
+        telemetry.addData("Status", "Specify Camera");
+        telemetry.update();
+
 
         // We also indicate which camera we wish to use.
         parameters.cameraName = webcamName;
 
+        telemetry.addData("Status", "Turn Off Extended Tracking");
+        telemetry.update();
+
+
         // Turn off Extended tracking.  Set this true if you want Vuforia to track beyond the target.
         parameters.useExtendedTracking = false;
 
+        telemetry.addData("Status", "Starting Vuforia Engine");
+        telemetry.update();
+
         //  Instantiate the Vuforia engine
-        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+        //vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        telemetry.addData("Status", "Load Trackables");
+        telemetry.update();
 
         // Load the data sets for the trackable objects. These particular data
         // sets are stored in the 'assets' part of our application.
         targets = this.vuforia.loadTrackablesFromAsset("FreightFrenzy");
+
+        telemetry.addData("Status", "Prepare Trackables");
+        telemetry.update();
 
         // For convenience, gather together all the trackable objects in one easily-iterable collection */
         List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
@@ -162,6 +188,8 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
         identifyTarget(2, "Red Storage",        -halfField, -oneAndHalfTile, mmTargetHeight, 90, 0, 90);
         identifyTarget(3, "Red Alliance Wall",   halfTile,  -halfField,      mmTargetHeight, 90, 0, 180);
 
+        telemetry.addData("Status", "Load Camera Position");
+        telemetry.update();
 
         final float CAMERA_FORWARD_DISPLACEMENT  = 0.0f * mmPerInch;   // eg: Enter the forward distance from the center of the robot to the camera lens
         final float CAMERA_VERTICAL_DISPLACEMENT = 6.0f * mmPerInch;   // eg: Camera is 6 Inches above ground
@@ -177,7 +205,8 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
         }
 
 
-
+        telemetry.addData("Init", "IMU");
+        telemetry.update();
         //Init IMU
 
         BNO055IMU.Parameters parametersIMU = new BNO055IMU.Parameters();
