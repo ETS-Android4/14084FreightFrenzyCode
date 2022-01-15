@@ -107,6 +107,9 @@ public class Strafe_Autonomous extends LinearOpMode {
             telemetry.addData("Timer", timer.milliseconds());
             telemetry.update();
         }
+
+        timer.reset();
+
         while (opModeIsActive() && (timer.milliseconds() < 2300 )) {
             robot.frontLeftMotor.setPower(0.5);
             robot.frontRightMotor.setPower(0.5);
