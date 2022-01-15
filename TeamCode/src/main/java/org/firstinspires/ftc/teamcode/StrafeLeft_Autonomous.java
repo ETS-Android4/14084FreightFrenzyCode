@@ -39,6 +39,9 @@ public class StrafeLeft_Autonomous extends LinearOpMode {
     public void runOpMode() {
         robot.initialize(hardwareMap);
 
+        robot.clawServo.setPosition(.75);
+
+
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
@@ -110,11 +113,18 @@ public class StrafeLeft_Autonomous extends LinearOpMode {
 
         timer.reset();
 
-        while (opModeIsActive() && (timer.milliseconds() < 2300 )) {
-            robot.frontLeftMotor.setPower(0.5);
-            robot.frontRightMotor.setPower(0.5);
-            robot.backLeftMotor.setPower(0.5);
-            robot.backRightMotor.setPower(0.5);
+        while (opModeIsActive() && (timer.milliseconds() < 8000 )) {
+            robot.spin.setPower(0.4);
+        }
+        robot.spin.setPower(0);
+
+        timer.reset();
+
+        while (opModeIsActive() && (timer.milliseconds() < 2200 )) {
+            robot.frontLeftMotor.setPower(-0.5);
+            robot.frontRightMotor.setPower(-0.5);
+            robot.backLeftMotor.setPower(-0.5);
+            robot.backRightMotor.setPower(-0.5);
         }
         robot.frontLeftMotor.setPower(0);
         robot.frontRightMotor.setPower(0);
