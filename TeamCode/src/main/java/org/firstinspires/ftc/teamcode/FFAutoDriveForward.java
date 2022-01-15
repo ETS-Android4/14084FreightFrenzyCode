@@ -53,5 +53,12 @@ public class FFAutoDriveForward extends LinearOpMode {
         robot.backRightMotor.setPower(0);
         robot.backLeftMotor.setPower(0);
 
+        timer.reset();
+        while (opModeIsActive() && (timer.milliseconds() < 4000)) {
+            robot.clawArm.setPower(-.4);
+        }
+
+        robot.clawArm.setPower(0);
+
     }
 }
