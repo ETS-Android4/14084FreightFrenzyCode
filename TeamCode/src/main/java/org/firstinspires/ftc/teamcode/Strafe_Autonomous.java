@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -17,8 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 import java.util.Locale;
 
-@Autonomous(name = "Autonomous Test" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
-@Disabled
+@Autonomous(name = "Strafe Autonomous" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
 
 //IMU code works
 
@@ -108,7 +107,7 @@ public class Strafe_Autonomous extends LinearOpMode {
             telemetry.addData("Timer", timer.milliseconds());
             telemetry.update();
         }
-        while (opModeIsActive() && (timer.milliseconds() < 3000 )) {
+        while (opModeIsActive() && (timer.milliseconds() < 2300 )) {
             robot.frontLeftMotor.setPower(0.5);
             robot.frontRightMotor.setPower(0.5);
             robot.backLeftMotor.setPower(0.5);
