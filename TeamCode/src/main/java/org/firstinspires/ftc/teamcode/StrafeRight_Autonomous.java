@@ -17,12 +17,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 import java.util.Locale;
 
-@Autonomous(name = "Strafe Autonomous" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
+@Autonomous(name = "Strafe Right Autonomous" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
 
 //IMU code works
 
 
-public class Strafe_Autonomous extends LinearOpMode {
+public class StrafeRight_Autonomous extends LinearOpMode {
     HardwareMap robot   = new HardwareMap();
     ElapsedTime runtime = new ElapsedTime();
     ElapsedTime timer   = new ElapsedTime();
