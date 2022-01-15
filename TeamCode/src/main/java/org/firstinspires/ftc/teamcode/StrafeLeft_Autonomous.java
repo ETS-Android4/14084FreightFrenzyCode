@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 import java.util.Locale;
 
-@Autonomous(name = "Strafe Left Autonomous" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
+@Autonomous(name = "Blue Strafe Left Autonomous" , group = "robot", preselectTeleOp = "TeleOp_Test.java")
 
 //IMU code works
 
