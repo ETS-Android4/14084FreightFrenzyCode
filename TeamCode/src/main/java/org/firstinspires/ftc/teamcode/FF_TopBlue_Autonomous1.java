@@ -127,7 +127,7 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
             // to artificially zoom in to the center of image.  For best results, the "aspectRatio" argument
             // should be set to the value of the images used to create the TensorFlow Object Detection model
             // (typically 16/9).
-            tfod.setZoom(2.5, 16.0/9.0);
+            tfod.setZoom(2.5, 16.0 / 9.0);
         }
 
 
@@ -183,17 +183,17 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
         allTrackables.addAll(targets);
 
         // Name and locate each trackable object
-        identifyTarget(0, "Blue Storage",       -halfField,  oneAndHalfTile, mmTargetHeight, 90, 0, 90);
-        identifyTarget(1, "Blue Alliance Wall",  halfTile,   halfField,      mmTargetHeight, 90, 0, 0);
-        identifyTarget(2, "Red Storage",        -halfField, -oneAndHalfTile, mmTargetHeight, 90, 0, 90);
-        identifyTarget(3, "Red Alliance Wall",   halfTile,  -halfField,      mmTargetHeight, 90, 0, 180);
+        identifyTarget(0, "Blue Storage", -halfField, oneAndHalfTile, mmTargetHeight, 90, 0, 90);
+        identifyTarget(1, "Blue Alliance Wall", halfTile, halfField, mmTargetHeight, 90, 0, 0);
+        identifyTarget(2, "Red Storage", -halfField, -oneAndHalfTile, mmTargetHeight, 90, 0, 90);
+        identifyTarget(3, "Red Alliance Wall", halfTile, -halfField, mmTargetHeight, 90, 0, 180);
 
         telemetry.addData("Status", "Load Camera Position");
         telemetry.update();
 
-        final float CAMERA_FORWARD_DISPLACEMENT  = 0.0f * mmPerInch;   // eg: Enter the forward distance from the center of the robot to the camera lens
+        final float CAMERA_FORWARD_DISPLACEMENT = 0.0f * mmPerInch;   // eg: Enter the forward distance from the center of the robot to the camera lens
         final float CAMERA_VERTICAL_DISPLACEMENT = 6.0f * mmPerInch;   // eg: Camera is 6 Inches above ground
-        final float CAMERA_LEFT_DISPLACEMENT     = 0.0f * mmPerInch;   // eg: Enter the left distance from the center of the robot to the camera lens
+        final float CAMERA_LEFT_DISPLACEMENT = 0.0f * mmPerInch;   // eg: Enter the left distance from the center of the robot to the camera lens
 
         OpenGLMatrix cameraLocationOnRobot = OpenGLMatrix
                 .translation(CAMERA_FORWARD_DISPLACEMENT, CAMERA_LEFT_DISPLACEMENT, CAMERA_VERTICAL_DISPLACEMENT)
@@ -210,11 +210,11 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
         //Init IMU
 
         BNO055IMU.Parameters parametersIMU = new BNO055IMU.Parameters();
-        parametersIMU.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        parametersIMU.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parametersIMU.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parametersIMU.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parametersIMU.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample OPMode
-        parametersIMU.loggingEnabled      = true;
-        parametersIMU.loggingTag          = "IMU";
+        parametersIMU.loggingEnabled = true;
+        parametersIMU.loggingTag = "IMU";
         parametersIMU.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
         imu = hardwareMap.get(BNO055IMU.class, "IMU");
@@ -223,9 +223,8 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
         composeTelemetry();
 
 
-
         //Add Telemetry text to Driver Station Screen
-        telemetry.addData("Status","Initialized");
+        telemetry.addData("Status", "Initialized");
         telemetry.addData("Action", "Press Play to Start");
         telemetry.update();
 
@@ -260,56 +259,56 @@ public class FF_TopBlue_Autonomous1 extends LinearOpMode {
             }
 
 
-        }
+            //Deliver preload freight
 
-        //Deliver preload freight
+            //Detect Location using Vuforia
+            //todo
+            targets.activate();
+            while (!isStopRequested() /*&& (timer < 3000)*/) {
 
-        //Detect Location using Vuforia
-        //todo
-        targets.activate();
-        while (!isStopRequested() /*&& (timer < 3000)*/) {
+                // check all the trackable targets to see which one (if any) is visible.
+                targetVisible = false;
+                for (VuforiaTrackable trackable : allTrackables) {
+                    if (((VuforiaTrackableDefaultListener) trackable.getListener()).isVisible()) {
+                        telemetry.addData("Visible Target", trackable.getName());
+                        targetVisible = true;
 
-            // check all the trackable targets to see which one (if any) is visible.
-            targetVisible = false;
-            for (VuforiaTrackable trackable : allTrackables) {
-                if (((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible()) {
-                    telemetry.addData("Visible Target", trackable.getName());
-                    targetVisible = true;
-
-                    // getUpdatedRobotLocation() will return null if no new information is available since
-                    // the last time that call was made, or if the trackable is not currently visible.
-                    OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener)trackable.getListener()).getUpdatedRobotLocation();
-                    if (robotLocationTransform != null) {
-                        lastLocation = robotLocationTransform;
+                        // getUpdatedRobotLocation() will return null if no new information is available since
+                        // the last time that call was made, or if the trackable is not currently visible.
+                        OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener) trackable.getListener()).getUpdatedRobotLocation();
+                        if (robotLocationTransform != null) {
+                            lastLocation = robotLocationTransform;
+                        }
+                        break;
                     }
-                    break;
                 }
+
+                // Provide feedback as to where the robot is located (if we know).
+                if (targetVisible) {
+                    // express position (translation) of robot in inches.
+                    VectorF translation = lastLocation.getTranslation();
+                    telemetry.addData("Pos (inches)", "{X, Y, Z} = %.1f, %.1f, %.1f",
+                            translation.get(0) / mmPerInch, translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
+
+                    // express the rotation of the robot in degrees.
+                    Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
+                    telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f", rotation.firstAngle, rotation.secondAngle, rotation.thirdAngle);
+                } else {
+                    telemetry.addData("Visible Target", "none");
+                }
+                telemetry.update();
             }
 
-            // Provide feedback as to where the robot is located (if we know).
-            if (targetVisible) {
-                // express position (translation) of robot in inches.
-                VectorF translation = lastLocation.getTranslation();
-                telemetry.addData("Pos (inches)", "{X, Y, Z} = %.1f, %.1f, %.1f",
-                        translation.get(0) / mmPerInch, translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
+            // Disable Tracking when we are done;
+            targets.deactivate();
 
-                // express the rotation of the robot in degrees.
-                Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
-                telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f", rotation.firstAngle, rotation.secondAngle, rotation.thirdAngle);
-            }
-            else {
-                telemetry.addData("Visible Target", "none");
-            }
-            telemetry.update();
+
+            //Spin Carousel
+
+            //Park
+
+
         }
-
-        // Disable Tracking when we are done;
-        targets.deactivate();
-
-
-        //Spin Carousel
-
-        //Park
 
 
     }
